@@ -20,7 +20,10 @@ class Bank:
 
     # Display all
     def display_information(self):
-        
+        if not self.wallet:
+            return "No transaction has been made in your bank."
+        return f"\n".join([Transaction.display_info() for transaction in self.wallet])
+    
     # Search
 
     # Save 
