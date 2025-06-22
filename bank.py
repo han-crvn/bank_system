@@ -1,5 +1,6 @@
 # Includes all the information and etc.
 from transaction import Transaction
+import json
 
 class Bank:
     
