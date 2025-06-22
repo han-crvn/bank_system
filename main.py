@@ -41,12 +41,12 @@ def main():
                     continue
                 
                 # Input type.
-                type = input("\nExpense or Deposit: ")
-
+                type = input("\nEnter Type: ")
+                
                 # Save the transaction.
                 action = Transaction(title, amount, type)
                 wallet.add_transaction(action)
-
+                print("The transaction has been saved to the program.")
            
             # If user choose this option, allow them to delete certain transaction.
             elif choice == "2":
