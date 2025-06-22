@@ -1,7 +1,7 @@
 # Includes all the information and etc.
 
 # Import transaction and json.
-from transaction import Transaction
+from transaction import Transaction, RecurringTransaction
 import json
 
 class Bank:
@@ -37,16 +37,22 @@ class Bank:
     
     # Save transaction.
     def save_information(self, file_name = "wallet.json"):
-        data = [{"title": transaction.title, "amount": transaction.amount, "type": transaction.type, "note": transaction.note } for transaction in self.wallet]
-        with open(file_name, "w") as file:
+        data = [{"class": transaction.__class__.__name__, "title": transaction.title, "amount": transaction.amount, "type": transaction.type, "note": transaction.note } for transaction in self.wallet]
+        with open(file_name, "a") as file:
             json.dump(data, file, indent = 4)
 
 
     # Load transaction.
-    def load_bank(self, file_name = "wallet.json"):
+    def load_bank(self, file_name="wallet.json"):
         try:
             with open(file_name, "r") as file:
                 data = json.load(file)
-                self.wallet = [Transaction(trans["title"], trans["amount"], trans["type"], trans["note"]) for trans in data]
+                self.wallet = []
+                for trans in data:
+                    if trans.get("class") == "RecurringTransaction":
+                        info = RecurringTransaction(trans["title"], trans["amount"], trans["type"], trans["frequency"], trans.get("note", ""))
+                    else:
+                        info = Transaction(trans["title"], trans["amount"], trans["type"], trans.get("note", ""))
+                    self.wallet.append(info)
         except FileNotFoundError:
             print("The file does not exist.")

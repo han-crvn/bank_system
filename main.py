@@ -2,7 +2,7 @@
 
 # Import the bank and transaction file.
 from bank import Bank
-from transaction import Transaction
+from transaction import Transaction, RecurringTransaction
 
 def main():
 
@@ -14,18 +14,19 @@ def main():
 
             # Print the menu.
             print("\n===== Personal Bank System =====")
-            print("1. Add a Transaction")
-            print("2. Remove a Transaction")
-            print("3. Display All Transaction")
-            print("4. Search for a Transaction")
-            print("5. Save a Transaction")
-            print("6. Load Transaction from file")
-            print("7. Exit Program")
+            print("1. Add Single Transaction")
+            print("2. Add Non-Single Transaction")
+            print("3. Remove a Transaction")
+            print("4. Display All Transaction")
+            print("5. Search for a Transaction")
+            print("6. Save a Transaction")
+            print("7. Load Transaction from file")
+            print("8. Exit Program")
             
             # Allow users to choose from menu.
             choice = input("\nEnter your choice (1-7): ")
             
-            # If user choose this option, allow them to add transaction.
+            # If user choose this option, allow them to add single transaction.
             if choice == "1":
 
                 # Input title.
@@ -43,13 +44,46 @@ def main():
                 # Input type.
                 type = input("\nEnter Type: ")
                 
+                # Add note.
+                note = input("Enter a note (optional): ")
+
                 # Save the transaction.
-                action = Transaction(title, amount, type)
+                action = Transaction(title, amount, type, note)
                 wallet.add_transaction(action)
                 print("The transaction has been saved to the program.")
            
-            # If user choose this option, allow them to delete certain transaction.
+
+           # If user choose this option, allow them to add non-single transaction.
             elif choice == "2":
+                
+                # Input title.
+                title = input("\nEnter the title: ")
+                
+                try:
+                    # Input amount.
+                    amount = float(input("\nEnter amount: "))
+                
+                # Catch invalid input.
+                except ValueError:
+                    print("\nInvalid amount entered.")
+                    continue
+                
+                # Input type.
+                type = input("\nEnter Type: ")
+
+                # Input frequency.
+                frequency = input("Enter the frequency (e.g., Monthly, Weekly): ")
+                
+                # Add note.
+                note = input("Enter a note (optional): ")
+                
+                 # Save the transaction.
+                recurring = RecurringTransaction(title, amount, type, frequency, note)
+                wallet.add_transaction(recurring)
+                print("The transaction has been saved to the program.")
+
+            # If user choose this option, allow them to delete certain transaction.
+            elif choice == "3":
                 
                 # Input title.
                 title = input("\nEnter the title: ")
@@ -58,11 +92,11 @@ def main():
                 print(wallet.delete_transaction(title))
 
             # If user choose this option, show informations.
-            elif choice == "3":
+            elif choice == "4":
                 print(wallet.display_information())
 
             # If user choose this option, allow user to search transactions.
-            elif choice == "4":
+            elif choice == "5":
                 
                 # Input title.
                 query = input("\nEnter the title: ")
@@ -70,20 +104,19 @@ def main():
                 # Display result.
                 print(wallet.search_wallet(query))
 
-
             # If user choose this option, save information.
-            elif choice == "5":
+            elif choice == "6":
                 wallet.save_information()
                 print("\nSuccessfully saved!")
 
             # If user choose this option, load information.
-            elif choice == "6":
+            elif choice == "7":
                 wallet.load_bank()
                 print("\nLoaded json file.")
 
 
             # If user choose this option, exit program.
-            elif choice == "7":
+            elif choice == "8":
                 print("\nLeaving the program.")
                 break
             
