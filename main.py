@@ -19,7 +19,13 @@ def main():
 
         if choice == "1":
             title = input("Enter the title: ")
-            amount = float(input("Enter amount: "))
+            
+            try:
+                amount = float(input("Enter amount: "))
+            except ValueError:
+                print("Invalid amount entered.")
+                continue
+
             type = input("Expense or Deposit: ")
             action = Transaction(title, amount, type)
             wallet.add_transaction(action)
@@ -50,6 +56,5 @@ def main():
         else:
             print("Invalid input. Please try again.")
 
-
-if __name__ in "__main__":
+if __name__ == "__main__":
     main()

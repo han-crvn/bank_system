@@ -22,21 +22,22 @@ class Bank:
     # Display all
     def display_information(self):
         if not self.wallet:
-            return f"No transaction has been made in your bank."
-        return f"\n".join([Transaction.display_info() for transaction in self.wallet])
-    
+            return "No transaction has been made in your bank."
+        return "\n".join([transaction.display_info() for transaction in self.wallet])
+
     # Search
     def search_wallet(self, query):
         found = [trans for trans in self.wallet if query.lower() in trans.title.lower() or query.lower() in trans.type.lower()]
         if not found:
-            return f"No transaction has been made."
-        return "\n".join([Transaction.display_info() for transaction in found])
+            return "No transaction has been made."
+        return "\n".join([transaction.display_info() for transaction in found])
     
     # Save 
     def save_information(self, file_name = "wallet.json"):
-        data = [{"Expense": Transaction.title, "Amount": Transaction.amount, "Type:": Transaction.type, "Note:": Transaction.note} for transaction in self.wallet]
+        data = [{"title": transaction.title, "amount": transaction.amount, "type": transaction.type, "note": transaction.note } for transaction in self.wallet]
         with open(file_name, "w") as file:
-            json.dump(data, file)
+            json.dump(data, file, indent = 4)
+
 
     # Load
     def load_bank(self, file_name = "wallet.json"):
