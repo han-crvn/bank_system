@@ -37,5 +37,12 @@ class Bank:
         data = [{"Expense": Transaction.title, "Amount": Transaction.amount, "Type:": Transaction.type, "Note:": Transaction.note} for transaction in self.wallet]
         with open(file_name, "w") as file:
             json.dump(data, file)
-            
+
     # Load
+    def load_bank(self, file_name = "wallet.json"):
+        try:
+            with open(file_name, "r") as file:
+                data = json.load(file)
+                self.wallet = [Transaction(trans["title"], trans["amount"], trans["type"], trans["note"]) for trans in data]
+        except FileNotFoundError:
+            print("The file does not exist.")
