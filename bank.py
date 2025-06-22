@@ -33,5 +33,9 @@ class Bank:
         return "\n".join([Transaction.display_info() for transaction in found])
     
     # Save 
-
+    def save_information(self, file_name = "wallet.json"):
+        data = [{"Expense": Transaction.title, "Amount": Transaction.amount, "Type:": Transaction.type, "Note:": Transaction.note} for transaction in self.wallet]
+        with open(file_name, "w") as file:
+            json.dump(data, file)
+            
     # Load
