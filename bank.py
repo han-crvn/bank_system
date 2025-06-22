@@ -8,4 +8,5 @@ class Bank:
         self.type = type
         self.note = note
 
-    
+    def display_info(self):
+        return "Transaction:\n Expense: {self.title}\n Amount: {self.amount}\n Type: {self.type}\n Note: {self.note}"
