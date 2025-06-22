@@ -45,12 +45,12 @@ def main():
                 type = input("\nEnter Type: ")
                 
                 # Add note.
-                note = input("Enter a note (optional): ")
+                note = input("\nEnter a note (optional): ")
 
                 # Save the transaction.
                 action = Transaction(title, amount, type, note)
                 wallet.add_transaction(action)
-                print("The transaction has been saved to the program.")
+                print("\nThe transaction has been saved to the program.")
            
 
            # If user choose this option, allow them to add non-single transaction.
@@ -72,15 +72,15 @@ def main():
                 type = input("\nEnter Type: ")
 
                 # Input frequency.
-                frequency = input("Enter the frequency (e.g., Monthly, Weekly): ")
+                frequency = input("\nEnter the frequency (Yearly, Monthly, Weekly): ")
                 
                 # Add note.
-                note = input("Enter a note (optional): ")
+                note = input("\nEnter a note (optional): ")
                 
                  # Save the transaction.
                 recurring = RecurringTransaction(title, amount, type, frequency, note)
                 wallet.add_transaction(recurring)
-                print("The transaction has been saved to the program.")
+                print("\nThe transaction has been saved to the program.")
 
             # If user choose this option, allow them to delete certain transaction.
             elif choice == "3":
