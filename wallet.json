@@ -1,0 +1,16 @@
+[
+    {
+        "class": "Transaction",
+        "title": "Netflix",
+        "amount": 250.0,
+        "type": "Expense",
+        "note": ""
+    },
+    {
+        "class": "RecurringTransaction",
+        "title": "Meralco",
+        "amount": 1500.0,
+        "type": "Expense",
+        "note": ""
+    }
+]

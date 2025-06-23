@@ -38,9 +38,8 @@ class Bank:
     # Save transaction.
     def save_information(self, file_name = "wallet.json"):
         data = [{"class": transaction.__class__.__name__, "title": transaction.title, "amount": transaction.amount, "type": transaction.type, "note": transaction.note } for transaction in self.wallet]
-        with open(file_name, "a") as file:
+        with open(file_name, "w") as file:
             json.dump(data, file, indent = 4)
-
 
     # Load transaction.
     def load_bank(self, file_name="wallet.json"):
