@@ -114,7 +114,6 @@ def main():
                 wallet.load_bank()
                 print("\nLoaded json file.")
 
-
             # If user choose this option, exit program.
             elif choice == "8":
                 print("\nLeaving the program.")
