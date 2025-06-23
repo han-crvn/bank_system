@@ -51,7 +51,6 @@ def main():
                 action = Transaction(title, amount, type, note)
                 wallet.add_transaction(action)
                 print("\nThe transaction has been saved to the program.")
-           
 
            # If user choose this option, allow them to add non-single transaction.
             elif choice == "2":
